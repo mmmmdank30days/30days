@@ -30,7 +30,6 @@ public class AsteroidFall : MonoBehaviour
 
         Vector3 impactPoint = transform.position;
 
-        // Get nearby objects
         Collider[] colliders = Physics.OverlapSphere(impactPoint, explosionRadius);
         foreach (Collider nearby in colliders)
         {
@@ -39,13 +38,6 @@ public class AsteroidFall : MonoBehaviour
             {
                 dw.Break(impactPoint, explosionForce, explosionRadius);
             }
-
-            if (dw != null)
-            {
-                dw.isKinematic = false;
-                dw.useGravity = true;
-                dw.AddExplosionForce(explosionForce, impactPoint, explosionRadius, 3f, ForceMode.Impulse);
-            }
         }
 
         if (explosionEffect)
@@ -53,5 +45,6 @@ public class AsteroidFall : MonoBehaviour
 
         Destroy(gameObject);
     }
+
 
 }
