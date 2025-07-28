@@ -26,14 +26,11 @@ public class AsteroidFall : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (hasExploded) return;
-
-        // Optional: only respond to Ground
-       // if (!collision.collider.CompareTag("Destructable")) return;
-
         hasExploded = true;
 
         Vector3 impactPoint = transform.position;
 
+        // Get nearby objects
         Collider[] colliders = Physics.OverlapSphere(impactPoint, explosionRadius);
         foreach (Collider nearby in colliders)
         {
@@ -49,7 +46,7 @@ public class AsteroidFall : MonoBehaviour
         if (explosionEffect)
             Instantiate(explosionEffect, impactPoint, Quaternion.identity);
 
-        Debug.Log("☄️ Asteroid impact triggered by collision.");
         Destroy(gameObject);
     }
+
 }
