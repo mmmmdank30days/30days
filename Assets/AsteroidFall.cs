@@ -34,12 +34,17 @@ public class AsteroidFall : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(impactPoint, explosionRadius);
         foreach (Collider nearby in colliders)
         {
-            Rigidbody nearbyRb = nearby.attachedRigidbody;
-            if (nearbyRb != null)
+            Destructable dw = nearby.GetComponent<Destructable>();
+            if (dw != null)
             {
-                nearbyRb.isKinematic = false;
-                nearbyRb.useGravity = true;
-                nearbyRb.AddExplosionForce(explosionForce, impactPoint, explosionRadius, 3f, ForceMode.Impulse);
+                dw.Break(impactPoint, explosionForce, explosionRadius);
+            }
+
+            if (dw != null)
+            {
+                dw.isKinematic = false;
+                dw.useGravity = true;
+                dw.AddExplosionForce(explosionForce, impactPoint, explosionRadius, 3f, ForceMode.Impulse);
             }
         }
 
