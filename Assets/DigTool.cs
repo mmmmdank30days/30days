@@ -2,51 +2,84 @@
 
 public class DigTool : MonoBehaviour
 {
-    public float digRange = 20f; // How far you can dig
+    public float digRange = 16f;
     public KeyCode digKey = KeyCode.E;
     public LayerMask diggableLayer;
     public GameObject digEffect;
-    public Transform handTransform; // Assign this in the Inspector to the left hand or shovel
+    public Transform handTransform; // Assign this to the left hand or shovel in Inspector
+    public Material highlightMaterial;
+
+    private GameObject currentHighlighted;
+    private Material originalMaterial;
 
     void Update()
     {
-        if (Input.GetKeyDown(digKey))
+        if (handTransform == null)
         {
-            Debug.Log("hit key!");
-            TryDig();
+            Debug.LogWarning("❗ handTransform not assigned.");
+            return;
         }
-    }
 
-    void TryDig()
-    {
-        Vector3 rayOrigin = handTransform.position + Vector3.down * 1.5f;
-        Vector3 rayDirection = (handTransform.forward + Vector3.down).normalized;
-        Debug.DrawRay(rayOrigin, rayDirection * digRange, Color.red, 2000f);
+        // Always raycast to check what player is aiming at
+        Vector3 origin = handTransform.position;
+        Vector3 direction = (handTransform.forward + Vector3.down * 2.5f).normalized;
 
-        Ray ray = new Ray(rayOrigin, rayDirection);
+        Debug.DrawRay(origin, direction * digRange, Color.red, 0.2f);
+
+        Ray ray = new Ray(origin, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, digRange, diggableLayer))
         {
             GameObject hitObject = hit.collider.gameObject;
-            Debug.Log("✅ Hit something: " + hit.collider.name + " dd " + hitObject.tag);
 
+            // Highlight logic
             if (hitObject.CompareTag("Diggable"))
             {
-                Debug.Log("⛏️ Dug into: " + hitObject.name);
+                if (currentHighlighted != hitObject)
+                {
+                    ClearHighlight();
 
-                if (digEffect != null)
-                    Instantiate(digEffect, hit.point, Quaternion.identity);
+                    currentHighlighted = hitObject;
+                    Renderer rend = currentHighlighted.GetComponent<Renderer>();
+                    if (rend != null)
+                    {
+                        originalMaterial = rend.material;
+                        rend.material = highlightMaterial;
+                    }
+                }
 
-                Destroy(hitObject);
+                // If dig key is pressed and target is valid
+                if (Input.GetKeyDown(digKey))
+                {
+                    Debug.Log("⛏️ Dug into: " + hitObject.name);
+
+                    if (digEffect != null)
+                        Instantiate(digEffect, hit.point, Quaternion.identity);
+
+                    Destroy(hitObject);
+                    ClearHighlight(); // Clean up reference after dig
+                }
             }
             else
             {
-                Debug.Log("Hit non-diggable object: " + hitObject.name);
+                ClearHighlight(); // It's not diggable
             }
         }
         else
         {
-            Debug.Log("❌ Raycast did not hit anything.");
+            ClearHighlight(); // Nothing hit
         }
     }
 
+    void ClearHighlight()
+    {
+        if (currentHighlighted != null)
+        {
+            Renderer rend = currentHighlighted.GetComponent<Renderer>();
+            if (rend != null && originalMaterial != null)
+                rend.material = originalMaterial;
+
+            currentHighlighted = null;
+            originalMaterial = null;
+        }
+    }
 }
