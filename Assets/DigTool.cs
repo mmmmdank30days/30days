@@ -12,6 +12,17 @@ public class DigTool : MonoBehaviour
     private GameObject currentHighlighted;
     private Material originalMaterial;
 
+    private Inventory inventory;
+
+    void Start()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            inventory = player.GetComponent<Inventory>();
+        }
+    }
+
     void Update()
     {
         if (handTransform == null)
@@ -20,10 +31,8 @@ public class DigTool : MonoBehaviour
             return;
         }
 
-        // Always raycast to check what player is aiming at
         Vector3 origin = handTransform.position;
         Vector3 direction = (handTransform.forward + Vector3.down * 2.5f).normalized;
-
         Debug.DrawRay(origin, direction * digRange, Color.red, 0.2f);
 
         Ray ray = new Ray(origin, direction);
@@ -31,13 +40,11 @@ public class DigTool : MonoBehaviour
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            // Highlight logic
             if (hitObject.CompareTag("Diggable"))
             {
                 if (currentHighlighted != hitObject)
                 {
                     ClearHighlight();
-
                     currentHighlighted = hitObject;
                     Renderer rend = currentHighlighted.GetComponent<Renderer>();
                     if (rend != null)
@@ -47,7 +54,6 @@ public class DigTool : MonoBehaviour
                     }
                 }
 
-                // If dig key is pressed and target is valid
                 if (Input.GetKeyDown(digKey))
                 {
                     Debug.Log("⛏️ Dug into: " + hitObject.name);
@@ -56,17 +62,23 @@ public class DigTool : MonoBehaviour
                         Instantiate(digEffect, hit.point, Quaternion.identity);
 
                     Destroy(hitObject);
-                    ClearHighlight(); // Clean up reference after dig
+
+                    if (inventory != null)
+                    {
+                        inventory.AddItem("Dirt", 1);
+                    }
+
+                    ClearHighlight();
                 }
             }
             else
             {
-                ClearHighlight(); // It's not diggable
+                ClearHighlight();
             }
         }
         else
         {
-            ClearHighlight(); // Nothing hit
+            ClearHighlight();
         }
     }
 
