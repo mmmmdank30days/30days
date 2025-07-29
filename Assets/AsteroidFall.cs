@@ -3,7 +3,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public class AsteroidFall : MonoBehaviour
 {
-    public float explosionRadius = 10f;
+    public float explosionRadius = 5f;
     public float explosionForce = 10f;
     public GameObject explosionEffect;
 

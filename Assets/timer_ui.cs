@@ -17,6 +17,9 @@ public class GameTimer : MonoBehaviour
     public GameObject endGameOverlay;
     public TMP_Text endGameMessage;
 
+    private float impactCountdown = 1f;
+    private bool gameEnded = false;
+
     private bool asteroidReleased = false;
 
     void Start()
@@ -28,35 +31,43 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if (currentDay > totalDays)
+        if (currentDay > totalDays+impactCountdown+2)
             return;
 
         timeLeft -= Time.deltaTime;
-
+       
         if (timeLeft <= 0f)
         {
             currentDay++;
-            if (currentDay > totalDays)
+            if (currentDay > totalDays && asteroidReleased && gameEnded)
             {
-
                 EndGame();
                 return;
             }
-            timeLeft = dayDuration;
-        }
-        else if (timeLeft <= 7f)
-        {
-            if (currentDay == totalDays)
+            else
             {
-                AsteroidFall asteroid = Object.FindFirstObjectByType<AsteroidFall>();
-                if (asteroid != null)
+                if (currentDay >= totalDays && !asteroidReleased && !gameEnded)
                 {
-                    asteroid.Release();
+                    AsteroidFall asteroid = Object.FindFirstObjectByType<AsteroidFall>();
+                    if (asteroid != null)
+                    {
+                        asteroid.Release();
+                        asteroidReleased = true;
+                    }
+                    timeLeft -= Time.deltaTime;
                 }
-
+                else if (currentDay >= totalDays && asteroidReleased && !gameEnded && impactCountdown == 0f)
+                {
+                    gameEnded = true;
+                }
+                else
+                {
+                    timeLeft = dayDuration;
+                    if (asteroidReleased) impactCountdown = impactCountdown - 1;
+                }
             }
-
         }
+        
 
         UpdateUI();
     }

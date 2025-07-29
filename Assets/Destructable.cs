@@ -11,7 +11,7 @@ public class Destructable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;         // Initially static
         rb.useGravity = false;
-        gameObject.tag = "Destructable"; // Required for asteroid to detect
+        //gameObject.tag = "Destructable"; // Required for asteroid to detect
     }
 
     // Call this when the asteroid explodes nearby
