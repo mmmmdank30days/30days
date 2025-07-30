@@ -25,6 +25,8 @@ public class DigTool : MonoBehaviour
 
     void Update()
     {
+        if (!GameState.ControlsEnabled) return;
+
         if (handTransform == null)
         {
             Debug.LogWarning("❗ handTransform not assigned.");

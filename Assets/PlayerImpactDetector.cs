@@ -15,7 +15,7 @@ public class PlayerImpactDetector : MonoBehaviour
             GameOverManager gameOver = FindFirstObjectByType<GameOverManager>();
             if (gameOver != null)
             {
-               gameOver.TriggerLoss("You were hit by debris!");
+                gameOver.TriggerLoss("You were hit by debris!");
             }
         }
     }

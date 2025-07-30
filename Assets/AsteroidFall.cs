@@ -43,7 +43,7 @@ public class AsteroidFall : MonoBehaviour
         if (explosionEffect)
             Instantiate(explosionEffect, impactPoint, Quaternion.identity);
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 

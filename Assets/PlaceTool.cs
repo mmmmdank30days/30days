@@ -27,6 +27,8 @@ public class PlaceTool : MonoBehaviour
 
     void Update()
     {
+        if (!GameState.ControlsEnabled) return;
+
         if (inventory == null || ghostInstance == null || handTransform == null)
             return;
 
