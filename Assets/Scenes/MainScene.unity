@@ -457,10 +457,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 320295181147812216, guid: e69e2444151be84408911cd6981c0759, type: 3}
-  spawnXRange: {x: 0, y: 128}
-  spawnZRange: {x: 0, y: 128}
-  spawnHeightRange: {x: 50, y: 150}
-  spawnScaleRange: {x: 20, y: 100}
+  spawnXRange: {x: 32, y: 96}
+  spawnZRange: {x: 32, y: 96}
+  spawnHeightRange: {x: 150, y: 300}
+  spawnScaleRange: {x: 1, y: 10}
 --- !u!4 &400486278
 Transform:
   m_ObjectHideFlags: 0
@@ -789,6 +789,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601931276}
   m_CullTransparentMesh: 1
+--- !u!218 &606669123 stripped
+Terrain:
+  m_CorrespondingSourceObject: {fileID: 2305530975664670775, guid: 4c300c75d956eff41badfd3d1234ffc1, type: 3}
+  m_PrefabInstance: {fileID: 5280079247458260842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &612029440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1821,7 @@ MonoBehaviour:
   endGameOverlay: {fileID: 1144002290}
   endGameMessage: {fileID: 1410045602}
   playAgainButton: {fileID: 1744755127}
-  terrain: {fileID: 0}
+  terrain: {fileID: 606669123}
   terrainGenerator: {fileID: 960521697}
 --- !u!114 &1431107529
 MonoBehaviour:
@@ -2020,7 +2025,7 @@ MonoBehaviour:
   ghostPreview: {fileID: 886601040104041430, guid: f9e6b8d647323fd418c51c786c2d6e75, type: 3}
   highlightMaterial: {fileID: 2100000, guid: 352ceb7e176a7f644aca478c9cffcd2f, type: 2}
   playerCamera: {fileID: 229035887}
-  terrain: {fileID: 0}
+  terrain: {fileID: 606669123}
   digSize: 2
   digDepth: 0.2
   digDecalPreviewPrefab: {fileID: 6789915018901070425, guid: a9c8fe39f2152064a9bcad1ca2fd55c8, type: 3}
