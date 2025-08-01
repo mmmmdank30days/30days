@@ -459,7 +459,7 @@ MonoBehaviour:
   asteroidPrefab: {fileID: 320295181147812216, guid: e69e2444151be84408911cd6981c0759, type: 3}
   spawnXRange: {x: 32, y: 96}
   spawnZRange: {x: 32, y: 96}
-  spawnHeightRange: {x: 150, y: 300}
+  spawnHeightRange: {x: 50, y: 150}
   spawnScaleRange: {x: 1, y: 10}
 --- !u!4 &400486278
 Transform:
@@ -1980,11 +1980,13 @@ MonoBehaviour:
   digRange: 5
   digKey: 101
   diggableLayer:
-    serializedVersion: 2
     m_Bits: 64
   digEffect: {fileID: 0}
   handTransform: {fileID: 819086701}
   highlightMaterial: {fileID: 2100000, guid: 352ceb7e176a7f644aca478c9cffcd2f, type: 2}
+  currentHighlighted: {fileID: 0}
+  originalMaterial: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!114 &1590018984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,6 +2004,8 @@ MonoBehaviour:
   placeDistance: 1
   placeKey: 114
   handTransform: {fileID: 819086701}
+  inventory: {fileID: 0}
+  ghostInstance: {fileID: 0}
 --- !u!114 &1590018985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2524,11 +2528,13 @@ MonoBehaviour:
   digRange: 3
   digKey: 101
   diggableLayer:
-    serializedVersion: 2
     m_Bits: 0
   digEffect: {fileID: 0}
   handTransform: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  currentHighlighted: {fileID: 0}
+  originalMaterial: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1862525950
 GameObject:
   m_ObjectHideFlags: 0
