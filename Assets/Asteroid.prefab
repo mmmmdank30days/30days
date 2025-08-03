@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 269190067875233676}
   - component: {fileID: 6297305848343298959}
   - component: {fileID: 1546049870373706071}
+  - component: {fileID: 3067787764417173241}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -174,3 +175,16 @@ MonoBehaviour:
   explosionRadius: 50
   explosionForce: 800
   explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+--- !u!114 &3067787764417173241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320295181147812216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20a354af7561e24c9a0942e617716c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100

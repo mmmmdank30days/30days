@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 4429134206848692583}
   - component: {fileID: 7810635319531736125}
   - component: {fileID: 5489396249366111333}
+  - component: {fileID: -211540255185070084}
   m_Layer: 0
   m_Name: DestructableFloor
   m_TagString: Destructable
@@ -430,6 +431,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df6910dcb67cda4ca173fde6067cd4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-211540255185070084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950128759845452933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20a354af7561e24c9a0942e617716c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &4924701422181430692
 GameObject:
   m_ObjectHideFlags: 0
